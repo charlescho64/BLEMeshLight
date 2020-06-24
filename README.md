@@ -1,1 +1,2 @@
-# BLE_Mesh-nRF52832-
+# BLE Mesh 
+## 지원 기능 리스트
