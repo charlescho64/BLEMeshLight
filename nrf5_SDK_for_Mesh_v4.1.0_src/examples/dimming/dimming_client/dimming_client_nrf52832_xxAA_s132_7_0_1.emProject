@@ -1,0 +1,34 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution
+  Name="dimming_client_nrf52832_xxAA_s132_7.0.1"
+  target="8"
+  version="2">
+  <configuration
+    Name="Debug"
+    arm_use_builtins="Yes"
+    build_intermediate_directory="build/$(ProjectName)_$(Configuration)/obj"
+    build_output_directory="build/$(ProjectName)_$(Configuration)"
+    gcc_debugging_level="Level 3"
+    gcc_entry_point="Reset_Handler"
+    gcc_omit_frame_pointer="No"
+    gcc_optimization_level="Debug" />
+  <configuration
+    Name="ReleaseWithDebugInformation"
+    arm_use_builtins="Yes"
+    build_intermediate_directory="build/$(ProjectName)_$(Configuration)/obj"
+    build_output_directory="build/$(ProjectName)_$(Configuration)"
+    gcc_debugging_level="Level 3"
+    gcc_entry_point="Reset_Handler"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="Optimize For Size" />
+  <configuration
+    Name="Release"
+    arm_use_builtins="Yes"
+    build_intermediate_directory="build/$(ProjectName)_$(Configuration)/obj"
+    build_output_directory="build/$(ProjectName)_$(Configuration)"
+    gcc_debugging_level="None"
+    gcc_entry_point="Reset_Handler"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="Optimize For Size" />
+  <import file_name="../../light_switch/client/light_switch_client_nrf52832_xxAA_s132_7_0_1.emProject" />
+</solution>
