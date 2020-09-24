@@ -81,6 +81,7 @@ static uint32_t status_send(generic_onoff_server_t * p_server,
 
     if (p_message == NULL)
     {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "---access_model_publish(p_server->model_handle, &reply); -----\n");
         return access_model_publish(p_server->model_handle, &reply);
     }
     else
@@ -115,6 +116,9 @@ static void handle_set(access_model_handle_t model_handle, const access_message_
     model_transition_t in_data_tr = {0};
     generic_onoff_status_params_t out_data = {0};
     generic_onoff_set_msg_pkt_t * p_msg_params_packed = (generic_onoff_set_msg_pkt_t *) p_rx_msg->p_data;
+
+
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "-----handle_set-----\n");
 
     if (set_params_validate(p_rx_msg, p_msg_params_packed))
     {

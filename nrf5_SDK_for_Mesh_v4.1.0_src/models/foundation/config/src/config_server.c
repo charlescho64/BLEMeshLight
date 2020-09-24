@@ -1217,6 +1217,9 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
     uint16_t element_address, publish_address = NRF_MESH_ADDR_UNASSIGNED;
     const config_publication_params_t * p_pubstate;
 
+
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- handle_config_model_publication_set -----\n");
+
     /* Extract fields that are different (or placed at different offsets) based on the incoming opcode: */
     if (p_message->opcode.opcode == CONFIG_OPCODE_MODEL_PUBLICATION_SET)
     {
@@ -1225,6 +1228,9 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
         element_address = p_pdu->element_address;
         p_pubstate = &p_pdu->state;
         publish_address = p_pdu->publish_address;
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- CONFIG_OPCODE_MODEL_PUBLICATION_SET -----\n");
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- element_address 0x%x -----\n", element_address);
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- publish_address 0x%x -----\n", publish_address);
     }
     else
     {
@@ -1276,6 +1282,10 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
             if (access_model_publish_address_get(model_handle, &publish_address_handle) != NRF_SUCCESS)
             {
                 status = dsm_address_publish_add(publish_address, &publish_address_handle);
+
+                __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- access_model_publish_address_get(model_handle, &publish_address_handle) != NRF_SUCCESS -----\n");
+                __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- element_address 0x%x -----\n", element_address);
+                __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- publish_address 0x%x -----\n", publish_address);
             }
             else
             {
@@ -1289,6 +1299,10 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
                         /* This should never assert */
                         NRF_MESH_ASSERT(dsm_address_publish_remove(publish_address_handle) == NRF_SUCCESS);
                         status = dsm_address_publish_add(publish_address, &publish_address_handle);
+
+                        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- dsm_address_get(publish_address_handle, &publish_address_stored) == NRF_SUCCESS -----\n");
+                        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- element_address 0x%x -----\n", element_address);
+                        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- publish_address 0x%x -----\n", publish_address);
                     }
                     else
                     {
@@ -1298,6 +1312,9 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
                 else
                 {
                     status = dsm_address_publish_add(publish_address, &publish_address_handle);
+                    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- dsm_address_get(publish_address_handle, &publish_address_stored) != NRF_SUCCESS -----\n");
+                    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- element_address 0x%x -----\n", element_address);
+                    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- publish_address 0x%x -----\n", publish_address);
                 }
             }
         }
@@ -1389,6 +1406,10 @@ static void handle_config_model_publication_set(access_model_handle_t handle, co
             NRF_MESH_ASSERT(access_model_publish_period_set(model_handle, (access_publish_resolution_t) publish_period.step_res,
                             publish_period.step_num) == NRF_SUCCESS);
         }
+
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ignore all incoming parameters -----\n");
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- element_address 0x%x -----\n", element_address);
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- publish_address 0x%x -----\n", publish_address);
 
         NRF_MESH_ASSERT(access_model_publish_retransmit_set(model_handle, publish_retransmit) == NRF_SUCCESS);
         NRF_MESH_ASSERT(access_model_publish_address_set(model_handle, publish_address_handle) == NRF_SUCCESS);

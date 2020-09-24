@@ -1,0 +1,2 @@
+build/teltron_light_switch_server_nrf52832_xxAA_s132_7.0.1_Debug/obj/thumb_crt0.o: \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.52c/source/thumb_crt0.s

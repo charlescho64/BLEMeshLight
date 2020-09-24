@@ -84,6 +84,7 @@ static void rx_cb(const nrf_mesh_adv_packet_rx_data_t * p_rx_data)
 {
     LEDS_OFF(BSP_LED_0_MASK);  /* @c LED_RGB_RED_MASK on pca10031 */
     char msg[128];
+
     (void) sprintf(msg, "RX [@%u]: RSSI: %3d ADV TYPE: %x ADDR: [%02x:%02x:%02x:%02x:%02x:%02x]",
                    p_rx_data->p_metadata->params.scanner.timestamp,
                    p_rx_data->p_metadata->params.scanner.rssi,
@@ -95,6 +96,7 @@ static void rx_cb(const nrf_mesh_adv_packet_rx_data_t * p_rx_data)
                    p_rx_data->p_metadata->params.scanner.adv_addr.addr[4],
                    p_rx_data->p_metadata->params.scanner.adv_addr.addr[5]);
     __LOG_XB(LOG_SRC_APP, LOG_LEVEL_INFO, msg, p_rx_data->p_payload, p_rx_data->length);
+ 
     LEDS_ON(BSP_LED_0_MASK);  /* @c LED_RGB_RED_MASK on pca10031 */
 }
 
@@ -263,7 +265,7 @@ static void start(void)
     /* Start advertising own beacon */
     /* Note: If application wants to start beacons at later time, adv_start() API must be called
      * from the same IRQ priority context same as that of the Mesh Stack. */
-    adv_start();
+   // adv_start();
 
     mesh_app_uuid_print(nrf_mesh_configure_device_uuid_get());
 

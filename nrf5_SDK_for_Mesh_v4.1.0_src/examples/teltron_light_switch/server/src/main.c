@@ -120,6 +120,7 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
     /* Resolve the server instance here if required, this example uses only 1 instance. */
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Getting On_Off \n")
 
     *p_present_onoff = hal_led_pin_get(ONOFF_SERVER_0_LED);
 }
@@ -155,6 +156,10 @@ static void config_server_evt_cb(const config_server_evt_t * p_evt)
     {
         node_reset();
     }
+
+
+__LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "config_server_evt_cb TYPE = %d \n", p_evt->type);
+
 }
 
 #if NRF_MESH_LOG_ENABLE
